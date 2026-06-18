@@ -1,1 +1,1 @@
-# tecnoquia-sistema-acceso
+# Sistema de Acceso Tecnoquia S.A.S
