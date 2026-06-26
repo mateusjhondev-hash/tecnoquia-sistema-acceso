@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesion - Tecnoquia S.A.S</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F7FA;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 4px 24px rgba(11,46,94,0.15);
+            width: 360px;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #0B2E5E;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 13px;
+            color: #AAC8F0;
+        }
+        .form-container {
+            padding: 24px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 13px;
+            color: #0F172A;
+            margin-bottom: 6px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            height: 40px;
+            padding: 0 12px;
+            margin-bottom: 16px;
+            border: 2px solid #1A5BB5;
+            background-color: #E8F1FF;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        button {
+            width: 100%;
+            height: 46px;
+            background-color: #0B2E5E;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1A5BB5;
+        }
+        .links {
+            text-align: center;
+            margin-top: 14px;
+        }
+        .links a {
+            display: block;
+            color: #1A5BB5;
+            font-size: 13px;
+            text-decoration: none;
+            margin-top: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="header">
+            <h1>Iniciar Sesion</h1>
+            <p>Bienvenido al sistema de Tecnoquia S.A.S</p>
+        </div>
+        <div class="form-container">
+
+            <!-- 
+                Este formulario envia los datos mediante el metodo GET
+                hacia el servlet LoginServlet. El metodo GET se usa aqui
+                con fines academicos para evidenciar su uso, ya que en un
+                sistema real de login se recomienda usar POST para no 
+                exponer la contraseña en la URL.
+            -->
+            <form action="LoginServlet" method="GET">
+
+                <label for="usuario">Usuario</label>
+                <input type="text" id="usuario" name="usuario" placeholder="Ingrese su usuario" required>
+
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
+
+                <button type="submit">Ingresar</button>
+            </form>
+
+            <div class="links">
+                <a href="registro.html">¿No tienes cuenta? Registrate aqui</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Usuario - Tecnoquia S.A.S</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F7FA;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 4px 24px rgba(11,46,94,0.15);
+            width: 380px;
+            overflow: hidden;
+            margin: 20px;
+        }
+        .header {
+            background-color: #1A7850;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 13px;
+            color: #B0DFC0;
+        }
+        .form-container {
+            padding: 24px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 13px;
+            color: #0F172A;
+            margin-bottom: 6px;
+        }
+        input {
+            width: 100%;
+            height: 40px;
+            padding: 0 12px;
+            margin-bottom: 16px;
+            border: 2px solid #1A7850;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        button {
+            width: 100%;
+            height: 46px;
+            background-color: #1A7850;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #155f3e;
+        }
+        .links {
+            text-align: center;
+            margin-top: 14px;
+        }
+        .links a {
+            color: #1A5BB5;
+            font-size: 13px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="header">
+            <h1>Registro de Usuario</h1>
+            <p>Crea tu cuenta en Tecnoquia S.A.S</p>
+        </div>
+        <div class="form-container">
+
+            <!-- 
+                Este formulario envia los datos mediante el metodo POST
+                hacia el servlet RegistroServlet, ya que se trata de un
+                envio de datos que crea informacion nueva en el sistema. 
+                Es buena practica usar POST para formularios que registran
+                o modifican datos.
+            -->
+            <form action="RegistroServlet" method="POST">
+
+                <label for="nombres">Nombres</label>
+                <input type="text" id="nombres" name="nombres" placeholder="Ej. Maria Fernanda" required>
+
+                <label for="apellidos">Apellidos</label>
+                <input type="text" id="apellidos" name="apellidos" placeholder="Ej. Gonzalez Torres" required>
+
+                <label for="cedula">Numero de Cedula</label>
+                <input type="text" id="cedula" name="cedula" placeholder="Sin puntos ni espacios" required>
+
+                <label for="correo">Correo Electronico</label>
+                <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+
+                <label for="usuario">Nombre de Usuario</label>
+                <input type="text" id="usuario" name="usuario" placeholder="Elige un nombre de usuario" required>
+
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" placeholder="Crea una contraseña" required>
+
+                <button type="submit">Registrarse</button>
+            </form>
+
+            <div class="links">
+                <a href="login.html">¿Ya tienes cuenta? Inicia sesion aqui</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
