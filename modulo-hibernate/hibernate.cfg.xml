@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<!--
+    Archivo de configuracion de Hibernate
+    Proyecto: Sistema de Acceso Tecnoquia S.A.S
+    Evidencia: GA7-220501096-AA3-EV01
+    
+    Este archivo le indica a Hibernate como conectarse a la base de datos
+    MySQL y que clase Java mapear a que tabla. Es el equivalente a la
+    clase Conexion.java que usamos en JDBC, pero mas completo ya que
+    aqui tambien se registran las entidades (clases mapeadas).
+-->
+
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- Datos de conexion a la base de datos MySQL (XAMPP) -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/tecnoquia_db?useSSL=false&amp;serverTimezone=UTC</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password"></property>
+
+        <!-- Dialecto: le dice a Hibernate que tipo de SQL debe generar -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
+
+        <!-- Muestra en consola el SQL que Hibernate genera automaticamente -->
+        <!-- Muy util para aprender y verificar que las consultas son correctas -->
+        <property name="hibernate.show_sql">true</property>
+
+        <!-- Formatea el SQL generado para que sea legible en consola -->
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- 
+            Opcion de manejo del esquema:
+            - update: actualiza la tabla si hay cambios en la clase Java
+            - create: borra y recrea la tabla cada vez que inicia
+            - validate: solo valida que la tabla coincide con la clase
+            Para esta evidencia usamos "update" que es la mas comun.
+        -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Registro de la clase entidad Usuario para que Hibernate la mapee -->
+        <mapping class="tecnoquiahibernate.tecnoquiahibernate.Usuario"/>
+
+    </session-factory>
+</hibernate-configuration>
