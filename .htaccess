@@ -1,0 +1,4 @@
+# .htaccess - Configuracion del servidor Apache para el proyecto
+# Activamos el modulo de reescritura de URL
+Options -Indexes
+Header always set X-Content-Type-Options nosniff

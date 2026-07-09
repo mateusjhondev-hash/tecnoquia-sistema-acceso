@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prueba del Servicio Web - Tecnoquia S.A.S.</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #F3F4F6; color: #374151; }
+    .encabezado {
+      background: #0B2E5E; color: white; padding: 18px 32px;
+      font-size: 20px; font-weight: 700;
+    }
+    .encabezado span { font-size: 13px; font-weight: 400; color: #93C5FD; display: block; }
+    .contenedor { max-width: 900px; margin: 32px auto; padding: 0 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .card { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    h2 { font-size: 16px; color: #0B2E5E; margin-bottom: 16px; border-bottom: 2px solid #1A5BB5; padding-bottom: 8px; }
+    label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; margin-top: 12px; }
+    input {
+      width: 100%; padding: 9px 12px; border: 1.5px solid #D1D5DB;
+      border-radius: 7px; font-size: 14px; font-family: inherit; outline: none;
+    }
+    input:focus { border-color: #1A5BB5; }
+    button {
+      margin-top: 16px; width: 100%; padding: 10px; border: none; border-radius: 7px;
+      font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit;
+    }
+    .btn-registro { background: #1A7850; color: white; }
+    .btn-login    { background: #1A5BB5; color: white; }
+    .respuesta {
+      margin-top: 16px; padding: 12px; border-radius: 7px;
+      font-size: 13px; white-space: pre-wrap; font-family: monospace;
+      background: #1E293B; color: #86EFAC; min-height: 60px;
+    }
+    .respuesta.error { color: #FCA5A5; }
+    @media (max-width: 600px) { .contenedor { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="encabezado">
+    Tecnoquia S.A.S. — Prueba del Servicio Web
+    <span>GA7-220501096-AA5-EV01 | Ficha 3134707 - Grupo 6</span>
+  </div>
+
+  <div class="contenedor">
+
+    <!-- Formulario de Registro -->
+    <div class="card">
+      <h2>➕ Registro de usuario</h2>
+      <label>Nombres</label>
+      <input id="reg-nombres" type="text" placeholder="Ej: Jhon Alvaro" />
+      <label>Apellidos</label>
+      <input id="reg-apellidos" type="text" placeholder="Ej: Mateus Saganome" />
+      <label>Cedula</label>
+      <input id="reg-cedula" type="text" placeholder="Solo numeros" />
+      <label>Correo electronico</label>
+      <input id="reg-correo" type="email" placeholder="usuario@dominio.com" />
+      <label>Nombre de usuario</label>
+      <input id="reg-usuario" type="text" placeholder="Ej: jhonm" />
+      <label>Contrasena (min. 6 caracteres)</label>
+      <input id="reg-password" type="password" placeholder="Minimo 6 caracteres" />
+      <button class="btn-registro" onclick="registrar()">Registrar usuario</button>
+      <div class="respuesta" id="reg-respuesta">// La respuesta del servicio aparecera aqui</div>
+    </div>
+
+    <!-- Formulario de Login -->
+    <div class="card">
+      <h2>🔐 Inicio de sesion</h2>
+      <label>Nombre de usuario</label>
+      <input id="log-usuario" type="text" placeholder="Ej: jhonm" />
+      <label>Contrasena</label>
+      <input id="log-password" type="password" placeholder="Tu contrasena" />
+      <button class="btn-login" onclick="login()">Iniciar sesion</button>
+      <div class="respuesta" id="log-respuesta">// La respuesta del servicio aparecera aqui</div>
+    </div>
+
+  </div>
+
+  <script>
+    // Funcion auxiliar que hace la peticion HTTP POST al servicio web
+    // y muestra la respuesta en el div de resultado
+    async function llamarAPI(url, cuerpo, elementoRespuesta) {
+      elementoRespuesta.textContent = 'Enviando peticion...';
+      elementoRespuesta.className = 'respuesta';
+
+      try {
+        // Hacemos la peticion POST con el cuerpo en formato JSON
+        const respuesta = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(cuerpo)
+        });
+
+        // Leemos la respuesta JSON del servidor
+        const datos = await respuesta.json();
+
+        // Formateamos el JSON con sangria para que sea legible
+        elementoRespuesta.textContent = JSON.stringify(datos, null, 2);
+
+        // Si el servidor respondio con error, cambiamos el color
+        if (!datos.exito) {
+          elementoRespuesta.className = 'respuesta error';
+        }
+
+      } catch (error) {
+        elementoRespuesta.className = 'respuesta error';
+        elementoRespuesta.textContent =
+          'Error de conexion. Verifica que XAMPP este corriendo y el proyecto este en htdocs.\nDetalle: ' + error.message;
+      }
+    }
+
+    // Llama al endpoint de registro con los datos del formulario
+    function registrar() {
+      const cuerpo = {
+        nombres:   document.getElementById('reg-nombres').value,
+        apellidos: document.getElementById('reg-apellidos').value,
+        cedula:    document.getElementById('reg-cedula').value,
+        correo:    document.getElementById('reg-correo').value,
+        usuario:   document.getElementById('reg-usuario').value,
+        password:  document.getElementById('reg-password').value
+      };
+      llamarAPI('api/registro.php', cuerpo, document.getElementById('reg-respuesta'));
+    }
+
+    // Llama al endpoint de login con usuario y contrasena
+    function login() {
+      const cuerpo = {
+        usuario:  document.getElementById('log-usuario').value,
+        password: document.getElementById('log-password').value
+      };
+      llamarAPI('api/login.php', cuerpo, document.getElementById('log-respuesta'));
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+# Archivos de configuracion local que no se suben al repositorio
+config/database.local.php
+
+# Archivos de log
+*.log
+error_log
