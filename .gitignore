@@ -1,0 +1,13 @@
+# Dependencias instaladas por npm (no se suben al repositorio)
+node_modules/
+
+# Carpeta de archivos generados al construir el proyecto
+dist/
+
+# Variables de entorno con datos sensibles
+.env
+.env.local
+
+# Archivos de configuración del editor
+.vscode/
+.idea/

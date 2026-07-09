@@ -1,0 +1,17 @@
+=======================================================
+  ENLACE AL REPOSITORIO - GA7-220501096-AA4-EV03
+=======================================================
+
+Repositorio GitHub del equipo de trabajo:
+https://github.com/mateusjhondev-hash/tecnoquia-sistema-acceso
+
+Rama principal: main
+
+Integrantes del equipo:
+  - Jhon Alvaro Mateus Saganome
+  - Tania Mildred Arciniegas Yanez
+  - Adrian Camilo Marin Isaza
+  - Blanca Azucena Gonzalez Clavijo
+
+Ficha: 3134707 - Grupo 6
+Instructora: Diva Mora Carrillo
