@@ -1,0 +1,4 @@
+# No subir configuracion local
+config/database.local.php
+*.log
+error_log

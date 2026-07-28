@@ -1,0 +1,106 @@
+=======================================================
+  DOCUMENTACION DE ENDPOINTS - GA7-220501096-AA5-EV03
+  Servicio Web REST - Tecnoquia S.A.S.
+  Ficha: 3134707 - Grupo 6
+  Instructor: Juan Manuel Carmona Arzuaga
+=======================================================
+
+BASE URL: http://localhost/tecnoquia-api-v2
+
+=======================================================
+  MODULO 1: USUARIOS
+=======================================================
+
+1. REGISTRO DE USUARIO
+   Metodo: POST
+   URL:    /api/usuarios/registro.php
+   Body:   { "nombre":"string", "correo":"string",
+             "direccion":"string", "telefono":"string",
+             "usuario":"string", "password":"string (min 6)" }
+   201:    { "exito":true, "mensaje":"...", "id":1 }
+   400:    { "exito":false, "mensaje":"Error de validacion" }
+   409:    { "exito":false, "mensaje":"Usuario ya existe" }
+
+2. INICIO DE SESION
+   Metodo: POST
+   URL:    /api/usuarios/login.php
+   Body:   { "usuario":"string", "password":"string" }
+   200:    { "exito":true, "mensaje":"Autenticacion satisfactoria.", "datos":{...} }
+   401:    { "exito":false, "mensaje":"Error en la autenticacion." }
+
+3. LISTAR TODOS LOS USUARIOS
+   Metodo: GET
+   URL:    /api/usuarios/listar.php
+   200:    { "exito":true, "total":3, "datos":[{...},{...}] }
+
+4. OBTENER UN USUARIO POR ID
+   Metodo: GET
+   URL:    /api/usuarios/obtener.php?id=1
+   200:    { "exito":true, "datos":{...} }
+   404:    { "exito":false, "mensaje":"No existe un usuario con el ID 1." }
+
+5. ACTUALIZAR UN USUARIO
+   Metodo: PUT
+   URL:    /api/usuarios/actualizar.php
+   Body:   { "id":1, "nombre":"string", "correo":"string",
+             "direccion":"string", "telefono":"string",
+             "usuario":"string", "password":"string (opcional)" }
+   200:    { "exito":true, "mensaje":"Usuario actualizado exitosamente." }
+   404:    { "exito":false, "mensaje":"No existe un usuario con el ID 1." }
+
+6. ELIMINAR UN USUARIO
+   Metodo: DELETE
+   URL:    /api/usuarios/eliminar.php
+   Body:   { "id": 1 }
+   200:    { "exito":true, "mensaje":"Usuario eliminado exitosamente." }
+   404:    { "exito":false, "mensaje":"No existe un usuario con el ID 1." }
+
+=======================================================
+  MODULO 2: PRODUCTOS
+=======================================================
+
+7. CREAR UN PRODUCTO
+   Metodo: POST
+   URL:    /api/productos/crear.php
+   Body:   { "nombre":"string", "descripcion":"string",
+             "precio":45000, "stock":100 }
+   201:    { "exito":true, "mensaje":"...", "id":1 }
+   400:    { "exito":false, "mensaje":"Error de validacion" }
+
+8. LISTAR TODOS LOS PRODUCTOS
+   Metodo: GET
+   URL:    /api/productos/listar.php
+   200:    { "exito":true, "total":5, "datos":[{...}] }
+
+9. OBTENER UN PRODUCTO POR ID
+   Metodo: GET
+   URL:    /api/productos/obtener.php?id=1
+   200:    { "exito":true, "datos":{...} }
+   404:    { "exito":false, "mensaje":"No existe un producto con el ID 1." }
+
+10. ACTUALIZAR UN PRODUCTO
+    Metodo: PUT
+    URL:    /api/productos/actualizar.php
+    Body:   { "id":1, "nombre":"string", "descripcion":"string",
+              "precio":50000, "stock":120 }
+    200:    { "exito":true, "mensaje":"Producto actualizado exitosamente." }
+    404:    { "exito":false, "mensaje":"No existe un producto con el ID 1." }
+
+11. ELIMINAR UN PRODUCTO
+    Metodo: DELETE
+    URL:    /api/productos/eliminar.php
+    Body:   { "id": 1 }
+    200:    { "exito":true, "mensaje":"Producto eliminado exitosamente." }
+    404:    { "exito":false, "mensaje":"No existe un producto con el ID 1." }
+
+=======================================================
+  CODIGOS HTTP UTILIZADOS
+=======================================================
+200 OK           - Operacion exitosa (consulta, login, actualizar, eliminar)
+201 Created      - Recurso creado exitosamente (registro, crear producto)
+400 Bad Request  - Datos invalidos o campos obligatorios vacios
+401 Unauthorized - Credenciales incorrectas (solo en login)
+404 Not Found    - El recurso con ese ID no existe
+405 Method Not Allowed - Metodo HTTP incorrecto
+409 Conflict     - El recurso ya existe (usuario duplicado)
+500 Internal Server Error - Error del servidor

@@ -1,0 +1,19 @@
+=======================================================
+  ENLACE AL REPOSITORIO - GA7-220501096-AA5-EV03
+=======================================================
+
+Repositorio GitHub:
+https://github.com/mateusjhondev-hash/tecnoquia-sistema-acceso
+
+Rama de esta evidencia: api-proyecto
+URL directa:
+https://github.com/mateusjhondev-hash/tecnoquia-sistema-acceso/tree/api-proyecto
+
+Integrantes:
+  - Jhon Alvaro Mateus Saganome
+  - Tania Mildred Arciniegas Yanez
+  - Adrian Camilo Marin Isaza
+  - Blanca Azucena Gonzalez Clavijo
+
+Ficha: 3134707 - Grupo 6
+Instructor: Juan Manuel Carmona Arzuaga
